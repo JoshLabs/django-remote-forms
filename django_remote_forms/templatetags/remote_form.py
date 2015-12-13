@@ -1,8 +1,10 @@
 import json
 from django import template
+from django import forms
 from django.core.serializers.json import DjangoJSONEncoder
+from django.utils.safestring import mark_safe
 
-from django_remote_forms.forms import RemoteForm
+from django_remote_forms.forms import RemoteForm, RemoteFormSet
 
 register = template.Library()
 
@@ -17,7 +19,10 @@ def form_as_json(form):
             var formData = {{ form|form_as_json }}
         </script>
     """
-    rf = RemoteForm(form)
+    if isinstance(form, forms.BaseFormSet):
+        rf = RemoteFormSet(form)
+    else:
+        rf = RemoteForm(form)
     dct = rf.as_dict()
     return json.dumps(dct, cls=DjangoJSONEncoder)
 

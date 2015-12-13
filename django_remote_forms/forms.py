@@ -4,6 +4,15 @@ from django import forms
 from django_remote_forms import fields, logger
 from django_remote_forms.utils import resolve_promise
 
+class RemoteFormSet(object):
+    def __init__(self, formset):
+        self.formset = formset
+        self.remote_forms = []
+        for form in self.formset:
+            self.remote_forms.append(RemoteForm(form))
+
+    def as_dict(self):
+        return [f.as_dict() for f in self.remote_forms]
 
 class RemoteForm(object):
     def __init__(self, form, *args, **kwargs):
@@ -101,9 +110,6 @@ class RemoteForm(object):
         }
         """
         form_dict = OrderedDict()
-        if isinstance(self.form, forms.formsets.BaseFormSet):
-            form_dict = self.get_formset_dict(self.form)
-            return form_dict
         form_dict['title'] = self.form.__class__.__name__
         form_dict['non_field_errors'] = self.form.non_field_errors()
         form_dict['label_suffix'] = self.form.label_suffix
