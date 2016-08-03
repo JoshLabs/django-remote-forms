@@ -1,5 +1,3 @@
-import json
-
 from django.utils.datastructures import SortedDict
 
 from django_remote_forms import fields, logger
