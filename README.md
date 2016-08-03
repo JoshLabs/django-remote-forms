@@ -4,6 +4,7 @@
 
 ```bash
 pip install git+git://github.com/FlyerDefenders/django-remote-forms@master
+```
 
 A package that allows you to serialize django forms, including fields and widgets into Python
 dictionary for easy conversion into JSON and expose over API
