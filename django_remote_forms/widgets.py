@@ -30,6 +30,15 @@ class RemoteInput(RemoteWidget):
         return widget_dict
 
 
+class RemoteTagWidget(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteTagWidget, self).as_dict()
+
+        widget_dict['input_type'] = "tags"
+
+        return widget_dict
+
+
 class RemoteTextInput(RemoteInput):
     def as_dict(self):
         return super(RemoteTextInput, self).as_dict()
@@ -60,7 +69,7 @@ class RemoteNumberInput(RemoteInput):
         widget_dict = super(RemoteNumberInput, self).as_dict()
 
         widget_dict['title'] = 'TextInput'
-        widget_dict['input_type'] = 'text'
+        widget_dict['input_type'] = 'number'
 
         return widget_dict
 
@@ -112,8 +121,9 @@ class RemoteTimeInput(RemoteInput):
         widget_dict = super(RemoteTimeInput, self).as_dict()
 
         widget_dict['format'] = self.widget.format
-        widget_dict['manual_format'] = self.widget.manual_format
-        widget_dict['date'] = self.widget.manual_format
+        if(hasattr(self.widget, 'manual_format')):
+            widget_dict['manual_format'] = self.widget.manual_format
+            widget_dict['date'] = self.widget.manual_format
         widget_dict['input_type'] = 'time'
 
         return widget_dict

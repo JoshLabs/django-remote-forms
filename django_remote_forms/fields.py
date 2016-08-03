@@ -62,6 +62,21 @@ class RemoteCharField(RemoteField):
         return field_dict
 
 
+class RemoteTagField(RemoteField):
+    def as_dict(self):
+        field_dict = super(RemoteTagField, self).as_dict()
+
+        field_dict.update({
+            'max_length': self.field.max_length,
+            'min_length': self.field.min_length
+        })
+        if field_dict['initial']:
+            field_dict['initial'] = ",".join(str(tag.tag) for tag in field_dict['initial'])
+
+
+        return field_dict
+
+
 class RemoteIntegerField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteIntegerField, self).as_dict()
