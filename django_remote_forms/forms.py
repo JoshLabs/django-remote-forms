@@ -2,6 +2,7 @@ from django.utils.datastructures import SortedDict
 
 from django_remote_forms import fields, logger
 from django_remote_forms.utils import resolve_promise
+import json
 
 
 class RemoteForm(object):
@@ -43,7 +44,7 @@ class RemoteForm(object):
         self.excluded_fields |= (self.included_fields - self.all_fields)
 
         if not self.ordered_fields:
-            if self.form.fields.keyOrder:
+            if hasattr(self.form.fields, 'keyOrder'):
                 self.ordered_fields = self.form.fields.keyOrder
             else:
                 self.ordered_fields = self.form.fields.keys()
@@ -101,12 +102,17 @@ class RemoteForm(object):
         """
         form_dict = SortedDict()
         form_dict['title'] = self.form.__class__.__name__
+        if hasattr(self.form, 'name'):
+            form_dict['name'] = self.form.name
+        else:
+            form_dict['name'] = self.form.__class__.__name__
         form_dict['non_field_errors'] = self.form.non_field_errors()
         form_dict['label_suffix'] = self.form.label_suffix
         form_dict['is_bound'] = self.form.is_bound
         form_dict['prefix'] = self.form.prefix
         form_dict['fields'] = SortedDict()
         form_dict['errors'] = self.form.errors
+        form_dict['typed_errors'] = json.loads(self.form.errors.as_json())
         form_dict['fieldsets'] = getattr(self.form, 'fieldsets', [])
 
         # If there are no fieldsets, specify order
