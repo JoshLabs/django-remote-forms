@@ -2,6 +2,7 @@ import datetime
 
 from django.utils.dates import MONTHS
 from django.utils.datastructures import SortedDict
+from django.forms import Select
 
 
 class RemoteWidget(object):
@@ -282,3 +283,15 @@ class RemoteSplitDateTimeWidget(RemoteMultiWidget):
 class RemoteSplitHiddenDateTimeWidget(RemoteSplitDateTimeWidget):
     def as_dict(self):
         return super(RemoteSplitHiddenDateTimeWidget, self).as_dict()
+
+
+class RemoteAutocompleteWidget(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteAutocompleteWidget, self).as_dict()
+
+        widget_dict['input_type'] = "autocomplete"
+
+        return widget_dict
+
+class AutocompleteWidget(Select):
+    pass
