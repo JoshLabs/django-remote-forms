@@ -1,11 +1,15 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
     from ez_setup import use_setuptools
     use_setuptools()
-    from setuptools import setup
+    from setuptools import setup, find_packages
+
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+    README = readme.read()
 
 setup(
     name='django-remote-forms',
@@ -14,15 +18,10 @@ setup(
     author='WiserTogether Tech Team',
     author_email='tech@wisertogether.com',
     url='http://github.com/wisertoghether/django-remote-forms/',
-    long_description=open('README.md', 'r').read(),
-    packages=[
-        'django_remote_forms',
-    ],
-    package_data={
-    },
+    long_description=README,
+    packages=find_packages(),
+    include_package_data=True,
     zip_safe=False,
-    requires=[
-    ],
     install_requires=[
     ],
     classifiers=[
