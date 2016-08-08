@@ -2,6 +2,7 @@ import datetime
 
 from django.utils.dates import MONTHS
 from django.utils.datastructures import SortedDict
+from django.forms import Select
 
 
 class RemoteWidget(object):
