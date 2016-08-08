@@ -282,3 +282,16 @@ class RemoteSplitDateTimeWidget(RemoteMultiWidget):
 class RemoteSplitHiddenDateTimeWidget(RemoteSplitDateTimeWidget):
     def as_dict(self):
         return super(RemoteSplitHiddenDateTimeWidget, self).as_dict()
+
+
+class RemoteAutocompleteWidget(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteAutocompleteWidget, self).as_dict()
+ 
+        widget_dict['input_type'] = "autocomplete"
+ 
+        return widget_dict
+ 
+ 
+class AutocompleteWidget(Select):
+    pass
