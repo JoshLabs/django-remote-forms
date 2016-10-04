@@ -13,7 +13,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 
 setup(
     name='django-remote-forms',
-    version='0.0.2',
+    version='0.0.3',
     description='A platform independent form serializer for Django.',
     author='WiserTogether Tech Team',
     author_email='tech@wisertogether.com',
