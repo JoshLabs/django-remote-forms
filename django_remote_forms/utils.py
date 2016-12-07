@@ -1,3 +1,4 @@
+from django.http import QueryDict
 from django.utils.functional import Promise
 
 try:
@@ -7,6 +8,8 @@ except ImportError:
 
 
 def resolve_promise(o):
+    if isinstance(o, QueryDict):
+        o = o.copy()
     if isinstance(o, dict):
         for k, v in o.items():
             o[k] = resolve_promise(v)
