@@ -1,5 +1,7 @@
 # django-remote-forms
 
+[![Build Status](https://travis-ci.org/Apkawa/django-remote-forms.svg?branch=master)](https://travis-ci.org/Apkawa/django-remote-forms)
+
 ## How to install
 
 ```bash

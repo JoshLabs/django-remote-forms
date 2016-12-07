@@ -5,6 +5,7 @@ try:
     from setuptools import setup, find_packages
 except ImportError:
     from ez_setup import use_setuptools
+
     use_setuptools()
     from setuptools import setup, find_packages
 
@@ -23,6 +24,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'django>=1.4,<1.11',
+        # "django-compat",
     ],
     classifiers=[
         'Development Status :: Pre Alpha',

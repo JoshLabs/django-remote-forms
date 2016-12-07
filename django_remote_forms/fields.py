@@ -40,7 +40,7 @@ class RemoteField(object):
         try:
             remote_widget_class = getattr(widgets, remote_widget_class_name)
             remote_widget = remote_widget_class(self.field.widget, field_name=self.field_name)
-        except Exception, e:
+        except Exception as e:
             logger.warning('Error serializing %s: %s', remote_widget_class_name, str(e))
             widget_dict = {}
         else:
@@ -73,7 +73,6 @@ class RemoteTagField(RemoteField):
         })
         if field_dict['initial']:
             field_dict['initial'] = ",".join(str(tag.tag) for tag in field_dict['initial'])
-
 
         return field_dict
 
@@ -113,12 +112,12 @@ class RemoteTimeField(RemoteField):
 
         field_dict['input_formats'] = self.field.input_formats
 
-        if (field_dict['initial']):
+        if field_dict['initial']:
             if callable(field_dict['initial']):
                 field_dict['initial'] = field_dict['initial']()
 
             # If initial value is datetime then convert it using first available input format
-            if (isinstance(field_dict['initial'], (datetime.datetime, datetime.time, datetime.date))):
+            if isinstance(field_dict['initial'], (datetime.datetime, datetime.time, datetime.date)):
                 if not len(field_dict['input_formats']):
                     if isinstance(field_dict['initial'], datetime.date):
                         field_dict['input_formats'] = settings.DATE_INPUT_FORMATS

@@ -123,7 +123,7 @@ class RemoteTimeInput(RemoteInput):
         widget_dict = super(RemoteTimeInput, self).as_dict()
 
         widget_dict['format'] = self.widget.format
-        if(hasattr(self.widget, 'manual_format')):
+        if hasattr(self.widget, 'manual_format'):
             widget_dict['manual_format'] = self.widget.manual_format
             widget_dict['date'] = self.widget.manual_format
         widget_dict['input_type'] = 'time'
@@ -262,9 +262,10 @@ class RemoteMultiWidget(RemoteWidget):
         widget_dict = super(RemoteMultiWidget, self).as_dict()
 
         widget_list = []
+        # FIXME wtf?
         for widget in self.widget.widgets:
             # Fetch remote widget and convert to dict
-            widget_list.append()
+            widget_list.append(widget)
 
         widget_dict['widgets'] = widget_list
 
