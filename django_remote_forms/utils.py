@@ -1,4 +1,5 @@
 from django.http import QueryDict
+from django.utils import six
 from django.utils.functional import Promise
 
 try:
@@ -8,11 +9,10 @@ except ImportError:
 
 
 def resolve_promise(o):
-    if isinstance(o, QueryDict):
-        o = o.copy()
     if isinstance(o, dict):
-        for k, v in o.items():
-            o[k] = resolve_promise(v)
+        return {k: resolve_promise(v) for k, v in o.items()}
+    if isinstance(o, six.text_type):
+        return force_text(o)
     elif isinstance(o, (list, tuple)):
         o = [resolve_promise(x) for x in o]
     elif isinstance(o, Promise):

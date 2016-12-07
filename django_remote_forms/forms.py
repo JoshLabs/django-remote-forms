@@ -1,8 +1,10 @@
+
+from .compat import json
+
 from collections import OrderedDict
 
 from django_remote_forms import fields, logger
 from django_remote_forms.utils import resolve_promise
-import json
 
 
 class RemoteForm(object):
