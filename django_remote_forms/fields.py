@@ -1,7 +1,8 @@
 import datetime
 
+from collections import OrderedDict
+
 from django.conf import settings
-from django.utils.datastructures import SortedDict
 
 from django_remote_forms import logger, widgets
 
@@ -24,7 +25,7 @@ class RemoteField(object):
         self.form_initial_data = form_initial_data
 
     def as_dict(self):
-        field_dict = SortedDict()
+        field_dict = OrderedDict()
         field_dict['title'] = self.field.__class__.__name__
         field_dict['required'] = self.field.required
         field_dict['label'] = self.field.label
@@ -58,6 +59,34 @@ class RemoteCharField(RemoteField):
             'max_length': self.field.max_length,
             'min_length': self.field.min_length
         })
+
+        return field_dict
+
+
+class RemoteTextareaField(RemoteField):
+    def as_dict(self):
+        field_dict = super(RemoteTextareaField, self).as_dict()
+
+        field_dict.update({
+            'row': self.field.row,
+            'col': self.field.col
+        })
+
+        return field_dict
+
+
+
+class RemoteTagField(RemoteField):
+    def as_dict(self):
+        field_dict = super(RemoteTagField, self).as_dict()
+
+        field_dict.update({
+            'max_length': self.field.max_length,
+            'min_length': self.field.min_length
+        })
+        if field_dict['initial']:
+            field_dict['initial'] = ",".join(str(tag.tag) for tag in field_dict['initial'])
+
 
         return field_dict
 

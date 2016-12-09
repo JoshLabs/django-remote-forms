@@ -1,7 +1,9 @@
 import datetime
 
+from collections import OrderedDict
+
 from django.utils.dates import MONTHS
-from django.utils.datastructures import SortedDict
+from django.forms import Select
 
 
 class RemoteWidget(object):
@@ -10,7 +12,7 @@ class RemoteWidget(object):
         self.widget = widget
 
     def as_dict(self):
-        widget_dict = SortedDict()
+        widget_dict = OrderedDict()
         widget_dict['title'] = self.widget.__class__.__name__
         widget_dict['is_hidden'] = self.widget.is_hidden
         widget_dict['needs_multipart_form'] = self.widget.needs_multipart_form
@@ -26,6 +28,24 @@ class RemoteInput(RemoteWidget):
         widget_dict = super(RemoteInput, self).as_dict()
 
         widget_dict['input_type'] = self.widget.input_type
+
+        return widget_dict
+
+
+class RemoteTextarea(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteTextarea, self).as_dict()
+
+        widget_dict['input_type'] = "textarea"
+
+        return widget_dict
+
+
+class RemoteTagWidget(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteTagWidget, self).as_dict()
+
+        widget_dict['input_type'] = "tags"
 
         return widget_dict
 
@@ -49,8 +69,8 @@ class RemoteEmailInput(RemoteInput):
     def as_dict(self):
         widget_dict = super(RemoteEmailInput, self).as_dict()
 
-        widget_dict['title'] = 'TextInput'
-        widget_dict['input_type'] = 'text'
+        widget_dict['title'] = 'EmailInput'
+        widget_dict['input_type'] = 'email'
 
         return widget_dict
 
@@ -112,8 +132,9 @@ class RemoteTimeInput(RemoteInput):
         widget_dict = super(RemoteTimeInput, self).as_dict()
 
         widget_dict['format'] = self.widget.format
-        widget_dict['manual_format'] = self.widget.manual_format
-        widget_dict['date'] = self.widget.manual_format
+        if(hasattr(self.widget, 'manual_format')):
+            widget_dict['manual_format'] = self.widget.manual_format
+            widget_dict['date'] = self.widget.manual_format
         widget_dict['input_type'] = 'time'
 
         return widget_dict
@@ -144,7 +165,7 @@ class RemoteDateTimeInput(RemoteTimeInput):
     def as_dict(self):
         widget_dict = super(RemoteDateTimeInput, self).as_dict()
 
-        widget_dict['input_type'] = 'datetime'
+        widget_dict['input_type'] = 'datetime-local'
 
         return widget_dict
 
@@ -197,7 +218,7 @@ class RemoteSelectMultiple(RemoteSelect):
 
 class RemoteRadioInput(RemoteWidget):
     def as_dict(self):
-        widget_dict = SortedDict()
+        widget_dict = OrderedDict()
         widget_dict['title'] = self.widget.__class__.__name__
         widget_dict['name'] = self.widget.name
         widget_dict['value'] = self.widget.value
@@ -212,7 +233,7 @@ class RemoteRadioInput(RemoteWidget):
 
 class RemoteRadioFieldRenderer(RemoteWidget):
     def as_dict(self):
-        widget_dict = SortedDict()
+        widget_dict = OrderedDict()
         widget_dict['title'] = self.widget.__class__.__name__
         widget_dict['name'] = self.widget.name
         widget_dict['value'] = self.widget.value
@@ -272,3 +293,16 @@ class RemoteSplitDateTimeWidget(RemoteMultiWidget):
 class RemoteSplitHiddenDateTimeWidget(RemoteSplitDateTimeWidget):
     def as_dict(self):
         return super(RemoteSplitHiddenDateTimeWidget, self).as_dict()
+
+
+class RemoteAutocompleteWidget(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteAutocompleteWidget, self).as_dict()
+
+        widget_dict['input_type'] = "autocomplete"
+
+        return widget_dict
+
+
+class AutocompleteWidget(Select):
+    pass
