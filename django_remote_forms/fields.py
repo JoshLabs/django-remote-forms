@@ -60,6 +60,10 @@ class RemoteCharField(RemoteField):
         return field_dict
 
 
+class RemoteUsernameField(RemoteCharField):
+    pass
+
+
 class RemoteTextareaField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteTextareaField, self).as_dict()
