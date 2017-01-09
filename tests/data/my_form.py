@@ -8,7 +8,7 @@ class MyForm(forms.Form):
     select = forms.ChoiceField(choices=[('label', '1'), ('label2', '2')], initial='2')
 
 
-EXPECT = {
+EXPECTED_FORM = {
     'data': {'check': None, 'name': None, 'select': '2', 'text': None},
     'errors': {},
     'fields': {

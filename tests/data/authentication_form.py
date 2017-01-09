@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 # TODO: Check what specifically changes.
 if StrictVersion(django.get_version()) < StrictVersion('1.10.0'):
-    EXPECT = {
+    EXPECTED_FORM = {
         'label_suffix': ':',
         'prefix': None,
         'name': 'AuthenticationForm',
@@ -57,7 +57,7 @@ if StrictVersion(django.get_version()) < StrictVersion('1.10.0'):
         },
     }
 else:
-    EXPECT = {
+    EXPECTED_FORM = {
         'label_suffix': ':',
         'prefix': None,
         'name': 'AuthenticationForm',

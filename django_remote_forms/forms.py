@@ -108,9 +108,7 @@ class RemoteForm(object):
                     'min_length: 'number',
                     'required': False,
                     'bound_data': 'data'
-                    'widget': {
-                        'attr': 'value'
-                    }
+                    'widget': { 'attr': 'value' }
                 }
             }
         }
