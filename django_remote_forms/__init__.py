@@ -1,5 +1,5 @@
 __author__ = 'Carlo Costino, Tareque Hossain'
-__version__ = (0, 0, 2)
+__version__ = (0, 0, 5)
 
 import logging
 

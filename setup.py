@@ -14,7 +14,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 
 setup(
     name='django-remote-forms',
-    version='0.0.4',
+    version='0.0.5',
     description='A platform independent form serializer for Django.',
     author='WiserTogether Tech Team',
     author_email='tech@wisertogether.com',
@@ -24,8 +24,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'django>=1.4,<1.11',
-        # "django-compat",
+        'django>=1.7,<1.11',
     ],
     classifiers=[
         'Development Status :: Pre Alpha',
