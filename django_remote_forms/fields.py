@@ -63,6 +63,18 @@ class RemoteCharField(RemoteField):
         return field_dict
 
 
+class RemoteTextareaField(RemoteField):
+    def as_dict(self):
+        field_dict = super(RemoteTextareaField, self).as_dict()
+
+        field_dict.update({
+            'row': self.field.row,
+            'col': self.field.col
+        })
+
+        return field_dict
+
+
 class RemoteTagField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteTagField, self).as_dict()

@@ -32,6 +32,15 @@ class RemoteInput(RemoteWidget):
         return widget_dict
 
 
+class RemoteTextarea(RemoteWidget):
+    def as_dict(self):
+        widget_dict = super(RemoteTextarea, self).as_dict()
+
+        widget_dict['input_type'] = "textarea"
+
+        return widget_dict
+
+
 class RemoteTagWidget(RemoteWidget):
     def as_dict(self):
         widget_dict = super(RemoteTagWidget, self).as_dict()
@@ -60,8 +69,8 @@ class RemoteEmailInput(RemoteInput):
     def as_dict(self):
         widget_dict = super(RemoteEmailInput, self).as_dict()
 
-        widget_dict['title'] = 'TextInput'
-        widget_dict['input_type'] = 'text'
+        widget_dict['title'] = 'EmailInput'
+        widget_dict['input_type'] = 'email'
 
         return widget_dict
 
@@ -111,13 +120,6 @@ class RemoteClearableFileInput(RemoteFileInput):
         return widget_dict
 
 
-class RemoteTextarea(RemoteWidget):
-    def as_dict(self):
-        widget_dict = super(RemoteTextarea, self).as_dict()
-        widget_dict['input_type'] = 'textarea'
-        return widget_dict
-
-
 class RemoteTimeInput(RemoteInput):
     def as_dict(self):
         widget_dict = super(RemoteTimeInput, self).as_dict()
@@ -156,7 +158,7 @@ class RemoteDateTimeInput(RemoteTimeInput):
     def as_dict(self):
         widget_dict = super(RemoteDateTimeInput, self).as_dict()
 
-        widget_dict['input_type'] = 'datetime'
+        widget_dict['input_type'] = 'datetime-local'
 
         return widget_dict
 
