@@ -9,8 +9,22 @@ class MyForm(forms.Form):
 
 
 EXPECTED_FORM = {
-    'data': {'check': None, 'name': None, 'select': '2', 'text': None},
+    'title': 'MyForm',
+    'name': 'MyForm',
+    'data': {
+        'check': None,
+        'name': None,
+        'select': '2',
+        'text': None
+    },
+    'is_bound': False,
+    'label_suffix': ':',
+    'ordered_fields': ['name', 'text', 'check', 'select'],
+    'prefix': None,
     'errors': {},
+    'typed_errors': {},
+    'non_field_errors': [],
+    'fieldsets': [],
     'fields': {
         'check': {
             'error_messages': {'required': 'This field is required.'},
@@ -27,7 +41,8 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': True,
                 'needs_multipart_form': False,
-                'title': 'CheckboxInput'}
+                'title': 'CheckboxInput'
+            }
         },
         'name': {
             'error_messages': {'required': 'This field is required.'},
@@ -45,14 +60,16 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': True,
                 'needs_multipart_form': False,
-                'title': 'TextInput'}
+                'title': 'TextInput'
+            }
         },
         'select': {
             'choices': [{'display': '1', 'value': 'label'},
                         {'display': '2', 'value': 'label2'}],
             'error_messages': {
                 'invalid_choice': 'Select a valid choice. %(value)s is not one of the available choices.',
-                'required': 'This field is required.'},
+                'required': 'This field is required.'
+            },
             'help_text': '',
             'initial': '2',
             'label': None,
@@ -60,16 +77,21 @@ EXPECTED_FORM = {
             'title': 'ChoiceField',
             'widget': {
                 'attrs': {},
-                'choices': [{'display': '1',
-                             'value': 'label'},
-                            {'display': '2',
-                             'value': 'label2'}],
+                'choices': [{
+                    'display': '1',
+                    'value': 'label'
+                },
+                    {
+                        'display': '2',
+                        'value': 'label2'
+                    }],
                 'input_type': 'select',
                 'is_hidden': False,
                 'is_localized': False,
                 'is_required': True,
                 'needs_multipart_form': False,
-                'title': 'Select'}
+                'title': 'Select'
+            }
         },
         'text': {
             'error_messages': {'required': 'This field is required.'},
@@ -87,16 +109,8 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': False,
                 'needs_multipart_form': False,
-                'title': 'Textarea'}
+                'title': 'Textarea'
+            }
         }
     },
-    'fieldsets': [],
-    'is_bound': False,
-    'label_suffix': ':',
-    'name': 'MyForm',
-    'non_field_errors': [],
-    'ordered_fields': ['name', 'text', 'check', 'select'],
-    'prefix': None,
-    'title': 'MyForm',
-    'typed_errors': {}
 }
