@@ -1,6 +1,6 @@
 # django-remote-forms
 
-## How to install
+## Installation
 
 ```bash
 pip install git+git@github.com:valohai/django-remote-forms.git
@@ -8,15 +8,6 @@ pip install git+git@github.com:valohai/django-remote-forms.git
 
 A package that allows you to serialize django forms, including fields and widgets into Python
 dictionary for easy conversion into JSON and expose over API.
-
-Please go through the original [djangocon US 2012 talk](http://www.slideshare.net/tarequeh/django-forms-in-a-web-api-world)
-to understand the problem sphere, motivations, challenges and implementation of Remote Forms.
-
-## Sample Implementation
-
-If you don't mind digging around a little bit to learn about different the components that might be
-necessary for an implementation of django-remote-forms, check out
-django Remote Admin [django-remote-admin](https://github.com/tarequeh/django-remote-admin)
 
 ## Testing
 
@@ -31,78 +22,81 @@ tox      # To run tests with various Python version defined in tox.ini
 ### Minimal Example
 
 ```python
+import json
+from django.contrib.auth.forms import AuthenticationForm
 from django_remote_forms.forms import RemoteForm
 
-form = LoginForm()
+form = AuthenticationForm()
 remote_form = RemoteForm(form)
 remote_form_dict = remote_form.as_dict()
+print(json.dumps(remote_form_dict))
 ```
-
-Upon converting the dictionary into JSON, it looks like this:
-
 ```json
 {
-    "is_bound": false,
-    "non_field_errors": [],
-    "errors": {},
-    "title": "LoginForm",
-    "fields": {
-        "username": {
-            "title": "CharField",
-            "required": true,
-            "label": "Username",
-            "initial": null,
-            "help_text": "This is your django username",
-            "error_messages": {
-                "required": "This field is required.",
-                "invalid": "Enter a valid value."
-            },
-            "widget": {
-                "title": "TextInput",
-                "is_hidden": false,
-                "needs_multipart_form": false,
-                "is_localized": false,
-                "is_required": true,
-                "attrs": {
-                    "maxlength": "30"
-                },
-                "input_type": "text"
-            },
-            "min_length": 6,
-            "max_length": 30
+  "typed_errors": {},
+  "errors": {},
+  "title": "AuthenticationForm",
+  "fieldsets": [],
+  "label_suffix": ":",
+  "name": "AuthenticationForm",
+  "non_field_errors": [],
+  "fields": {
+    "username": {
+      "widget": {
+        "is_localized": false,
+        "is_required": true,
+        "needs_multipart_form": false,
+        "input_type": "text",
+        "title": "TextInput",
+        "attrs": {
+          "maxlength": "254",
+          "autofocus": ""
         },
-        "password": {
-            "title": "CharField",
-            "required": true,
-            "label": "Password",
-            "initial": null,
-            "help_text": "",
-            "error_messages": {
-                "required": "This field is required.",
-                "invalid": "Enter a valid value."
-            },
-            "widget": {
-                "title": "PasswordInput",
-                "is_hidden": false,
-                "needs_multipart_form": false,
-                "is_localized": false,
-                "is_required": true,
-                "attrs": {
-                    "maxlength": "128"
-                },
-                "input_type": "password"
-            },
-            "min_length": 6,
-            "max_length": 128
-        }
+        "is_hidden": false
+      },
+      "min_length": null,
+      "required": true,
+      "label": "Username",
+      "error_messages": {
+        "required": "This field is required."
+      },
+      "max_length": 254,
+      "title": "UsernameField",
+      "initial": null,
+      "help_text": ""
     },
-    "label_suffix": ":",
-    "prefix": null,
-    "csrfmiddlewaretoken": "2M3MDgfzBmkmBrJ9U0MuYUdy8vgeCCgw",
-    "data": {
-        "username": null,
-        "password": null
+    "password": {
+      "widget": {
+        "is_localized": false,
+        "is_required": true,
+        "needs_multipart_form": false,
+        "input_type": "password",
+        "title": "PasswordInput",
+        "attrs": {},
+        "is_hidden": false
+      },
+      "min_length": null,
+      "required": true,
+      "label": "Password",
+      "error_messages": {
+        "required": "This field is required."
+      },
+      "max_length": null,
+      "title": "CharField",
+      "initial": null,
+      "help_text": ""
     }
+  },
+  "is_bound": false,
+  "ordered_fields": [
+    "username",
+    "password"
+  ],
+  "data": {
+    "username": null,
+    "password": null
+  },
+  "prefix": null
 }
 ```
 
@@ -150,7 +144,16 @@ def my_ajax_view(request):
     return response
 ```
 
-## djangocon Proposal
+## Sample Implementation
+
+If you don't mind digging around a little bit to learn about different the components that might be
+necessary for an implementation of django-remote-forms, check out
+Django Remote Admin [django-remote-admin](https://github.com/tarequeh/django-remote-admin)
+
+## DjangoCon Proposal
+
+Please go through the original [DjangoCon US 2012 talk](http://www.slideshare.net/tarequeh/django-forms-in-a-web-api-world)
+to understand the problem sphere, motivations, challenges and implementation of Django Remote Forms.
 
 This is a bit lengthy. But if you want to know more about my motivations behind developing django-remote-forms
 then read on.
