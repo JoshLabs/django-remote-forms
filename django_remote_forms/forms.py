@@ -6,17 +6,31 @@ from django_remote_forms.utils import resolve_promise
 
 class RemoteFormSet(object):
     def __init__(self, formset):
+        """
+        :param formset:
+        :type formset: django.forms.formsets.BaseFormSet
+        """
         self.formset = formset
+        self.remote_management_form = RemoteForm(formset.management_form)
         self.remote_forms = []
         for form in self.formset:
             self.remote_forms.append(RemoteForm(form))
 
     def as_dict(self):
-        return [f.as_dict() for f in self.remote_forms]
+        return {
+            'management_form': self.remote_management_form.as_dict(),
+            'forms': [f.as_dict() for f in self.remote_forms]
+        }
 
 
 class RemoteForm(object):
     def __init__(self, form, *args, **kwargs):
+        """
+        :param form:
+        :type form: django.forms.forms.BaseForm
+        :param args:
+        :param kwargs:
+        """
         self.form = form
 
         self.all_fields = set(self.form.fields.keys())
@@ -112,6 +126,7 @@ class RemoteForm(object):
                 }
             }
         }
+        :return:
         """
         form_dict = OrderedDict()
         form_dict['title'] = self.form.__class__.__name__
