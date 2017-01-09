@@ -1,24 +1,30 @@
 # django-remote-forms
 
-[![Build Status](https://travis-ci.org/Apkawa/django-remote-forms.svg?branch=master)](https://travis-ci.org/Apkawa/django-remote-forms)
-
 ## How to install
 
 ```bash
-pip install git+git://github.com/FlyerDefenders/django-remote-forms@master
+pip install git+git@github.com:valohai/django-remote-forms.git
 ```
 
 A package that allows you to serialize django forms, including fields and widgets into Python
-dictionary for easy conversion into JSON and expose over API
+dictionary for easy conversion into JSON and expose over API.
 
-Please go through my [djangocon US 2012 talk](http://www.slideshare.net/tarequeh/django-forms-in-a-web-api-world)
-to understand the problem sphere, motivations, challenges and implementation of Remote Forms
+Please go through the original [djangocon US 2012 talk](http://www.slideshare.net/tarequeh/django-forms-in-a-web-api-world)
+to understand the problem sphere, motivations, challenges and implementation of Remote Forms.
 
 ## Sample Implementation
 
 If you don't mind digging around a little bit to learn about different the components that might be
 necessary for an implementation of django-remote-forms, check out
 django Remote Admin [django-remote-admin](https://github.com/tarequeh/django-remote-admin)
+
+## Testing
+
+```bash
+pip install -r requirements-dev.txt
+pytest   # To run tests against your (virtual) environment
+tox      # To run tests with various Python version defined in tox.ini
+```
 
 ## Usage
 
