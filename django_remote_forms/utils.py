@@ -1,4 +1,3 @@
-from django.http import QueryDict
 from django.utils import six
 from django.utils.functional import Promise
 

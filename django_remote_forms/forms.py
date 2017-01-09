@@ -4,6 +4,17 @@ from django_remote_forms import fields, logger
 from django_remote_forms.utils import resolve_promise
 
 
+class RemoteFormSet(object):
+    def __init__(self, formset):
+        self.formset = formset
+        self.remote_forms = []
+        for form in self.formset:
+            self.remote_forms.append(RemoteForm(form))
+
+    def as_dict(self):
+        return [f.as_dict() for f in self.remote_forms]
+
+
 class RemoteForm(object):
     def __init__(self, form, *args, **kwargs):
         self.form = form

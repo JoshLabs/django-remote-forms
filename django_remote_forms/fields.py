@@ -1,9 +1,6 @@
 import datetime
-
 from collections import OrderedDict
-
 from django.conf import settings
-
 from django_remote_forms import logger, widgets
 
 
@@ -222,7 +219,7 @@ class RemoteTypedChoiceField(RemoteChoiceField):
         field_dict = super(RemoteTypedChoiceField, self).as_dict()
 
         field_dict.update({
-            'coerce': self.field.coerce,
+            # 'coerce': self.field.coerce,
             'empty_value': self.field.empty_value
         })
 
@@ -244,7 +241,7 @@ class RemoteTypedMultipleChoiceField(RemoteMultipleChoiceField):
         field_dict = super(RemoteTypedMultipleChoiceField, self).as_dict()
 
         field_dict.update({
-            'coerce': self.field.coerce,
+            # 'coerce': self.field.coerce,
             'empty_value': self.field.empty_value
         })
 

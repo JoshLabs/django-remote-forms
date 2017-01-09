@@ -1,7 +1,5 @@
 import datetime
-
 from collections import OrderedDict
-
 from django.utils.dates import MONTHS
 from django.forms import Select
 
@@ -128,6 +126,7 @@ class RemoteTimeInput(RemoteInput):
         if hasattr(self.widget, 'manual_format'):
             widget_dict['manual_format'] = self.widget.manual_format
             widget_dict['date'] = self.widget.manual_format
+
         widget_dict['input_type'] = 'time'
 
         return widget_dict
