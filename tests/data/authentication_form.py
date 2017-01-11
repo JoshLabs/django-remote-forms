@@ -6,7 +6,7 @@ EXPECTED_FORM = {
     'label_suffix': ':',
     'prefix': None,
     'name': 'AuthenticationForm',
-    'title': 'AuthenticationForm',
+    'class_name': 'AuthenticationForm',
     'is_bound': False,
     'errors': {},
     'non_field_errors': [],
@@ -23,7 +23,7 @@ EXPECTED_FORM = {
                 'input_type': 'text',
                 'attrs': {'maxlength': '254'},
                 'is_required': True,
-                'title': 'TextInput',
+                'class_name': 'TextInput',
                 'is_hidden': False
             },
             'error_messages': {'required': 'This field is required.'},
@@ -31,7 +31,7 @@ EXPECTED_FORM = {
             'help_text': '',
             'min_length': None,
             'label': 'Username',
-            'title': 'CharField',
+            'class_name': 'CharField',
             'initial': None
         },
         'password': {
@@ -42,7 +42,7 @@ EXPECTED_FORM = {
                 'input_type': 'password',
                 'attrs': {},
                 'is_required': True,
-                'title': 'PasswordInput',
+                'class_name': 'PasswordInput',
                 'is_hidden': False
             },
             'error_messages': {'required': 'This field is required.'},
@@ -50,12 +50,12 @@ EXPECTED_FORM = {
             'help_text': '',
             'min_length': None,
             'label': 'Password',
-            'title': 'CharField',
+            'class_name': 'CharField',
             'initial': None
         }
     },
 }
 
 if StrictVersion(django.get_version()) >= StrictVersion('1.10.0'):
-    EXPECTED_FORM['fields']['username']['title'] = 'UsernameField'
+    EXPECTED_FORM['fields']['username']['class_name'] = 'UsernameField'
     EXPECTED_FORM['fields']['username']['widget']['attrs']['autofocus'] = ''

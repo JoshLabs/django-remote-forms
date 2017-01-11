@@ -9,7 +9,7 @@ class MyForm(forms.Form):
 
 
 EXPECTED_FORM = {
-    'title': 'MyForm',
+    'class_name': 'MyForm',
     'name': 'MyForm',
     'data': {
         'check': None,
@@ -32,7 +32,7 @@ EXPECTED_FORM = {
             'initial': None,
             'label': None,
             'required': True,
-            'title': 'BooleanField',
+            'class_name': 'BooleanField',
             'widget': {
                 'attrs': {},
                 'check_test': True,
@@ -41,7 +41,7 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': True,
                 'needs_multipart_form': False,
-                'title': 'CheckboxInput'
+                'class_name': 'CheckboxInput'
             }
         },
         'name': {
@@ -52,7 +52,7 @@ EXPECTED_FORM = {
             'max_length': None,
             'min_length': None,
             'required': True,
-            'title': 'CharField',
+            'class_name': 'CharField',
             'widget': {
                 'attrs': {},
                 'input_type': 'text',
@@ -60,7 +60,7 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': True,
                 'needs_multipart_form': False,
-                'title': 'TextInput'
+                'class_name': 'TextInput'
             }
         },
         'select': {
@@ -74,7 +74,7 @@ EXPECTED_FORM = {
             'initial': '2',
             'label': None,
             'required': True,
-            'title': 'ChoiceField',
+            'class_name': 'ChoiceField',
             'widget': {
                 'attrs': {},
                 'choices': [{
@@ -90,7 +90,7 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': True,
                 'needs_multipart_form': False,
-                'title': 'Select'
+                'class_name': 'Select'
             }
         },
         'text': {
@@ -101,7 +101,7 @@ EXPECTED_FORM = {
             'max_length': None,
             'min_length': None,
             'required': False,
-            'title': 'CharField',
+            'class_name': 'CharField',
             'widget': {
                 'attrs': {'cols': '40', 'rows': '10'},
                 'input_type': 'textarea',
@@ -109,7 +109,7 @@ EXPECTED_FORM = {
                 'is_localized': False,
                 'is_required': False,
                 'needs_multipart_form': False,
-                'title': 'Textarea'
+                'class_name': 'Textarea'
             }
         }
     },

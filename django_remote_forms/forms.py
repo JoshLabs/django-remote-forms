@@ -129,7 +129,7 @@ class RemoteForm(object):
         :return:
         """
         form_dict = OrderedDict()
-        form_dict['title'] = self.form.__class__.__name__
+        form_dict['class_name'] = self.form.__class__.__name__
         if hasattr(self.form, 'name'):
             form_dict['name'] = self.form.name
         else:

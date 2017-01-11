@@ -15,7 +15,7 @@ def empty_form_dict(prefix=None, add_my_field=False):
         'non_field_errors': [],
         'ordered_fields': [],
         'prefix': prefix,
-        'title': 'EmptyForm',
+        'class_name': 'EmptyForm',
         'typed_errors': {}
     }
     if add_my_field:
@@ -23,7 +23,7 @@ def empty_form_dict(prefix=None, add_my_field=False):
         dict['ordered_fields'] = ['my_field']
         dict['fields']['my_field'] = {
             'min_length': None,
-            'title': 'CharField',
+            'class_name': 'CharField',
             'required': True,
             'error_messages': {'required': 'This field is required.'},
             'help_text': '',
@@ -31,7 +31,7 @@ def empty_form_dict(prefix=None, add_my_field=False):
             'max_length': None,
             'label': None,
             'widget': {
-                'title': 'TextInput',
+                'class_name': 'TextInput',
                 'is_localized': False,
                 'is_hidden': False,
                 'attrs': {},
@@ -55,7 +55,7 @@ def management_dict(prefix='form', initial_forms=None, total_forms=None, min_num
             'MAX_NUM_FORMS': _management_field(required=False, initial=max_num)
         },
         'prefix': prefix,
-        'title': 'ManagementForm',
+        'class_name': 'ManagementForm',
         'fieldsets': [],
         'ordered_fields': ['TOTAL_FORMS', 'INITIAL_FORMS', 'MIN_NUM_FORMS', 'MAX_NUM_FORMS'],
         'name': 'ManagementForm',
@@ -73,7 +73,7 @@ def management_dict(prefix='form', initial_forms=None, total_forms=None, min_num
 def _management_field(required, initial=None):
     return {
         'initial': initial,
-        'title': 'IntegerField',
+        'class_name': 'IntegerField',
         'min_value': None,
         'error_messages': {'invalid': 'Enter a whole number.', 'required': 'This field is required.'},
         'max_value': None,
@@ -92,5 +92,5 @@ def _management_widget(required=True):
         'needs_multipart_form': False,
         'is_hidden': True,
         'attrs': {},
-        'title': 'HiddenInput'
+        'class_name': 'HiddenInput'
     }
