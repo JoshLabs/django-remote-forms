@@ -67,19 +67,16 @@ class RemoteUsernameField(RemoteCharField):
 class RemoteTextareaField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteTextareaField, self).as_dict()
-
         field_dict.update({
             'row': self.field.row,
             'col': self.field.col
         })
-
         return field_dict
 
 
 class RemoteTagField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteTagField, self).as_dict()
-
         field_dict.update({
             'max_length': self.field.max_length,
             'min_length': self.field.min_length
@@ -93,12 +90,10 @@ class RemoteTagField(RemoteField):
 class RemoteIntegerField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteIntegerField, self).as_dict()
-
         field_dict.update({
             'max_value': self.field.max_value,
             'min_value': self.field.min_value
         })
-
         return field_dict
 
 
@@ -110,12 +105,10 @@ class RemoteFloatField(RemoteIntegerField):
 class RemoteDecimalField(RemoteIntegerField):
     def as_dict(self):
         field_dict = super(RemoteDecimalField, self).as_dict()
-
         field_dict.update({
             'max_digits': self.field.max_digits,
             'decimal_places': self.field.decimal_places
         })
-
         return field_dict
 
 
@@ -173,9 +166,7 @@ class RemoteEmailField(RemoteCharField):
 class RemoteFileField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteFileField, self).as_dict()
-
         field_dict['max_length'] = self.field.max_length
-
         return field_dict
 
 
@@ -202,7 +193,6 @@ class RemoteNullBooleanField(RemoteBooleanField):
 class RemoteChoiceField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteChoiceField, self).as_dict()
-
         field_dict['choices'] = []
         for key, value in self.field.choices:
             field_dict['choices'].append({
@@ -221,7 +211,6 @@ class RemoteModelChoiceField(RemoteChoiceField):
 class RemoteTypedChoiceField(RemoteChoiceField):
     def as_dict(self):
         field_dict = super(RemoteTypedChoiceField, self).as_dict()
-
         field_dict.update({
             # 'coerce': self.field.coerce,
             'empty_value': self.field.empty_value
@@ -243,55 +232,45 @@ class RemoteModelMultipleChoiceField(RemoteMultipleChoiceField):
 class RemoteTypedMultipleChoiceField(RemoteMultipleChoiceField):
     def as_dict(self):
         field_dict = super(RemoteTypedMultipleChoiceField, self).as_dict()
-
         field_dict.update({
             # 'coerce': self.field.coerce,
             'empty_value': self.field.empty_value
         })
-
         return field_dict
 
 
 class RemoteComboField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteComboField, self).as_dict()
-
         field_dict.update(fields=self.field.fields)
-
         return field_dict
 
 
 class RemoteMultiValueField(RemoteField):
     def as_dict(self):
         field_dict = super(RemoteMultiValueField, self).as_dict()
-
         field_dict['fields'] = self.field.fields
-
         return field_dict
 
 
 class RemoteFilePathField(RemoteChoiceField):
     def as_dict(self):
         field_dict = super(RemoteFilePathField, self).as_dict()
-
         field_dict.update({
             'path': self.field.path,
             'match': self.field.match,
             'recursive': self.field.recursive
         })
-
         return field_dict
 
 
 class RemoteSplitDateTimeField(RemoteMultiValueField):
     def as_dict(self):
         field_dict = super(RemoteSplitDateTimeField, self).as_dict()
-
         field_dict.update({
             'input_date_formats': self.field.input_date_formats,
             'input_time_formats': self.field.input_time_formats
         })
-
         return field_dict
 
 
