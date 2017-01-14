@@ -30,6 +30,7 @@ def empty_form_dict(prefix=None, add_my_field=False):
             'initial': None,
             'max_length': None,
             'label': None,
+            'disabled': False,
             'widget': {
                 'class_name': 'TextInput',
                 'is_localized': False,
@@ -80,7 +81,8 @@ def _management_field(required, initial=None):
         'widget': _management_widget(required=required),
         'required': required,
         'help_text': '',
-        'label': None
+        'label': None,
+        'disabled': False,
     }
 
 

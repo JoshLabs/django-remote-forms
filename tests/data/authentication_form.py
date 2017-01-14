@@ -32,7 +32,8 @@ EXPECTED_FORM = {
             'min_length': None,
             'label': 'Username',
             'class_name': 'CharField',
-            'initial': None
+            'initial': None,
+            'disabled': False,
         },
         'password': {
             'required': True,
@@ -51,7 +52,8 @@ EXPECTED_FORM = {
             'min_length': None,
             'label': 'Password',
             'class_name': 'CharField',
-            'initial': None
+            'initial': None,
+            'disabled': False,
         }
     },
 }

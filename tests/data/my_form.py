@@ -32,6 +32,7 @@ EXPECTED_FORM = {
             'initial': None,
             'label': None,
             'required': True,
+            'disabled': False,
             'class_name': 'BooleanField',
             'widget': {
                 'attrs': {},
@@ -52,6 +53,7 @@ EXPECTED_FORM = {
             'max_length': None,
             'min_length': None,
             'required': True,
+            'disabled': False,
             'class_name': 'CharField',
             'widget': {
                 'attrs': {},
@@ -74,6 +76,7 @@ EXPECTED_FORM = {
             'initial': '2',
             'label': None,
             'required': True,
+            'disabled': False,
             'class_name': 'ChoiceField',
             'widget': {
                 'attrs': {},
@@ -101,6 +104,7 @@ EXPECTED_FORM = {
             'max_length': None,
             'min_length': None,
             'required': False,
+            'disabled': False,
             'class_name': 'CharField',
             'widget': {
                 'attrs': {'cols': '40', 'rows': '10'},
