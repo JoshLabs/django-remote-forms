@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-pip install git+git@github.com:valohai/django-remote-forms.git
+pip install git+git@github.com:JoshLabs/django-remote-forms.git
 ```
 
 A package that allows you to serialize django forms, including fields and widgets into Python
